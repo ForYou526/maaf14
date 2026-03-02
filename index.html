@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love 💖</title>
+
+<style>
+body{
+margin:0;
+font-family:'Comic Sans MS', cursive;
+text-align:center;
+overflow:hidden;
+transition:2s;
+background:linear-gradient(to bottom,#ff9ecf,#ffcce6);
+}
+
+/* FLOWER FALL */
+.flower{
+position:fixed;
+top:-50px;
+font-size:28px;
+animation:fall linear infinite;
+opacity:0.9;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* PAPER */
+.container{padding-top:120px;position:relative;z-index:5;}
+.paper{
+width:360px;
+min-height:250px;
+margin:20px auto;
+padding:30px;
+border-radius:15px;
+background:white;
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* BUTTON */
+button{
+padding:10px 20px;
+margin:10px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
+}
+.yes{background:#ff4b8b;color:white;}
+#noBtn{background:white;color:#ff4b8b;position:absolute;}
+
+/* NIGHT MODE */
+body.night{
+background:radial-gradient(circle at center,#0f0f2a,#000);
+}
+
+/* STARS */
+.star{
+position:fixed;
+width:3px;
+height:3px;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+from{opacity:0.3;}
+to{opacity:1;}
+}
+
+/* FIREWORK */
+.firework{
+position:fixed;
+width:6px;
+height:6px;
+border-radius:50%;
+animation:explode 1s ease-out forwards;
+}
+@keyframes explode{
+0%{transform:scale(0);opacity:1;}
+100%{transform:translate(var(--x),var(--y)) scale(1);opacity:0;}
+}
+
+/* LOVE */
+.love{
+font-size:70px;
+cursor:pointer;
+margin-top:20px;
+}
+
+/* HEART PARTICLE */
+.heart{
+position:fixed;
+font-size:20px;
+animation:heartBoom 1.2s forwards;
+}
+@keyframes heartBoom{
+0%{transform:scale(0);}
+100%{transform:translate(var(--x),var(--y)) scale(1.5);opacity:0;}
+}
+
+/* HOLOGRAM PHOTO */
+.hologram{
+position:fixed;
+top:20%;
+left:50%;
+transform:translateX(-50%);
+width:260px;
+border-radius:20px;
+box-shadow:0 0 30px cyan,0 0 60px pink;
+animation:fadeIn 3s forwards;
+opacity:0;
+}
+@keyframes fadeIn{
+to{opacity:1;}
+}
+
+/* NAME SKY */
+.nameSky{
+position:fixed;
+top:10%;
+width:100%;
+font-size:45px;
+color:white;
+text-shadow:0 0 20px pink,0 0 40px hotpink;
+animation:glow 2s infinite alternate;
+display:none;
+}
+@keyframes glow{
+from{text-shadow:0 0 10px pink;}
+to{text-shadow:0 0 30px hotpink;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="nameSky" id="nameSky">✨ NAMANYA ✨</div>
+
+<div class="container">
+<div class="paper" id="paper">
+<h2>Hai Sayangku 🥺💖</h2>
+<p id="text"></p>
+
+<div id="buttons" style="display:none;">
+<h3>Maafin aku yaa? 🥺</h3>
+<button class="yes" onclick="forgive()">Iyaaa 🤍</button>
+<button id="noBtn" onmouseover="moveNo()">Gamau 😝</button>
+</div>
+</div>
+</div>
+
+<script>
+
+/* FLOWERS */
+for(let i=0;i<50;i++){
+let f=document.createElement("div");
+f.className="flower";
+f.innerHTML=["🌸","🌺","🌷","🌹"][Math.floor(Math.random()*4)];
+f.style.left=Math.random()*100+"vw";
+f.style.animationDuration=(Math.random()*8+5)+"s";
+document.body.appendChild(f);
+}
+
+/* TYPE TEXT */
+let msg="Sayang... aku minta maaf yaa 🥺 kalau aku bikin kamu sedih. Kamu itu segalanya buat aku dan aku ga mau kehilangan kamu 🤍";
+let i=0;
+function type(){
+if(i<msg.length){
+document.getElementById("text").innerHTML+=msg.charAt(i);
+i++;
+setTimeout(type,35);
+}else{
+document.getElementById("buttons").style.display="block";
+}
+}
+type();
+
+/* NO BUTTON LARI */
+function moveNo(){
+let btn=document.getElementById("noBtn");
+btn.style.top=Math.random()*70+"%";
+btn.style.left=Math.random()*70+"%";
+}
+
+/* AFTER YES */
+function forgive(){
+document.body.classList.add("night");
+document.getElementById("paper").innerHTML=
+"<h2 style='color:white'>Makasih ya sayangkuu 🥺💖</h2>"+
+"<div class='love' onclick='explodeLove()'>❤️</div>";
+
+createStars();
+startFireworks();
+}
+
+/* STARS */
+function createStars(){
+for(let i=0;i<120;i++){
+let s=document.createElement("div");
+s.className="star";
+s.style.left=Math.random()*100+"vw";
+s.style.top=Math.random()*100+"vh";
+s.style.animationDelay=Math.random()*2+"s";
+document.body.appendChild(s);
+}
+}
+
+/* FIREWORKS */
+function startFireworks(){
+setInterval(()=>{
+for(let i=0;i<20;i++){
+let fw=document.createElement("div");
+fw.className="firework";
+fw.style.background=["red","yellow","cyan","pink","orange"][Math.floor(Math.random()*5)];
+fw.style.left=Math.random()*100+"vw";
+fw.style.top=Math.random()*50+"vh";
+fw.style.setProperty("--x",(Math.random()*200-100)+"px");
+fw.style.setProperty("--y",(Math.random()*200-100)+"px");
+document.body.appendChild(fw);
+setTimeout(()=>fw.remove(),1000);
+}
+},1200);
+}
+
+/* LOVE EXPLODE */
+function explodeLove(){
+for(let i=0;i<30;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left="50%";
+h.style.top="50%";
+h.style.setProperty("--x",(Math.random()*300-150)+"px");
+h.style.setProperty("--y",(Math.random()*300-150)+"px");
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),1200);
+}
+
+setTimeout(()=>{
+showHologram();
+},1200);
+}
+
+/* PHOTO HOLOGRAM */
+function showHologram(){
+let img=document.createElement("img");
+img.src="foto.jpg";
+img.className="hologram";
+document.body.appendChild(img);
+
+document.getElementById("nameSky").style.display="block";
+}
+
+</script>
+
+</body>
+</html>
