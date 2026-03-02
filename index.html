@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💐</title>
+
+<style>
+body{
+margin:0;
+font-family:'Comic Sans MS', cursive;
+text-align:center;
+overflow:hidden;
+transition:2s;
+background:#ffe6f2;
+}
+
+/* NIGHT MODE */
+body.dark{
+background:radial-gradient(circle at center,#0f0f1a,#000);
+}
+
+/* FAIRY LIGHT */
+.fairy{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-around;
+z-index:5;
+}
+
+.bulb{
+width:15px;
+height:15px;
+border-radius:50%;
+background:yellow;
+box-shadow:0 0 15px yellow;
+animation:blink 1s infinite alternate;
+}
+
+@keyframes blink{
+from{opacity:0.3;}
+to{opacity:1;}
+}
+
+/* FLOWER FALL */
+.fall{
+position:fixed;
+top:-50px;
+font-size:25px;
+animation:falling linear infinite;
+opacity:0.8;
+}
+
+@keyframes falling{
+to{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+
+/* ENVELOPE */
+.container{padding-top:80px;position:relative;z-index:2;}
+
+.envelope{
+width:220px;
+height:140px;
+background:#ff6fa5;
+margin:auto;
+position:relative;
+border-radius:10px;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.flap{
+width:220px;
+height:110px;
+background:#ff8fc4;
+position:absolute;
+top:0;
+left:0;
+transform-origin:top;
+transition:transform 1s ease;
+border-radius:10px 10px 0 0;
+}
+
+.envelope.open .flap{
+transform:rotateX(180deg);
+}
+
+/* PAPER */
+.paper{
+width:360px;
+min-height:300px;
+margin:20px auto;
+padding:30px 30px 30px 50px;
+border-radius:10px;
+display:none;
+color:#5e2a84;
+transform:scale(0.6);
+opacity:0;
+transition:1s;
+text-align:left;
+line-height:30px;
+font-size:18px;
+background:white;
+box-shadow:0 20px 50px rgba(0,0,0,0.3);
+}
+
+.paper.show{
+transform:scale(1);
+opacity:1;
+}
+
+button{
+padding:10px 20px;
+margin:10px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.yes{background:#ff4b8b;color:white;}
+#noBtn{background:white;color:#ff4b8b;position:absolute;}
+
+/* GIFT BOX */
+.gift{
+font-size:80px;
+margin-top:30px;
+cursor:pointer;
+animation:shake 1s infinite;
+}
+
+@keyframes shake{
+0%,100%{transform:rotate(0);}
+25%{transform:rotate(5deg);}
+75%{transform:rotate(-5deg);}
+}
+
+/* LOVE RESULT */
+.bigLove{
+font-size:80px;
+color:pink;
+animation:pulse 1.5s infinite;
+text-shadow:0 0 25px hotpink;
+}
+
+@keyframes pulse{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.2);}
+}
+
+footer{
+position:fixed;
+bottom:10px;
+width:100%;
+font-size:14px;
+color:#ff4b8b;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Hai Sayangku 🥺💖</h2>
+
+<div class="envelope" id="envelope" onclick="openEnvelope()">
+<div class="flap"></div>
+</div>
+
+<div class="paper" id="paper">
+<p id="text"></p>
+
+<div id="buttons" style="display:none; text-align:center;">
+<h3>Maafin aku yaa? 🥺</h3>
+<button class="yes" onclick="forgive()">Iyaaa 🤍</button>
+<button id="noBtn" onmouseover="moveNo()">Gamau 😝</button>
+</div>
+</div>
+
+</div>
+
+<footer>
+Powered by Raihan Nadir Widodo 💕
+</footer>
+
+<script>
+
+/* OPEN */
+function openEnvelope(){
+let env=document.getElementById("envelope");
+env.classList.add("open");
+setTimeout(()=>{
+env.style.display="none";
+let paper=document.getElementById("paper");
+paper.style.display="block";
+setTimeout(()=>{paper.classList.add("show");},100);
+typeEffect();
+},1000);
+}
+
+/* TYPE */
+let message="Sayang... aku minta maaf yaa 🥺 Kalau aku bikin kamu sedih atau kesel itu bukan niat aku. Aku cuma lagi belajar jadi yang terbaik buat kamu. Kamu itu penting banget buat aku 🤍";
+
+let i=0;
+
+function typeEffect(){
+if(i<message.length){
+document.getElementById("text").innerHTML+=message.charAt(i);
+i++;
+setTimeout(typeEffect,35);
+}else{
+document.getElementById("buttons").style.display="block";
+}
+}
+
+function moveNo(){
+let btn=document.getElementById("noBtn");
+btn.style.top=Math.random()*70+"%";
+btn.style.left=Math.random()*70+"%";
+}
+
+/* AFTER FORGIVE */
+function forgive(){
+document.body.classList.add("dark");
+
+/* FAIRY LIGHT */
+let fairy=document.createElement("div");
+fairy.className="fairy";
+for(let i=0;i<20;i++){
+let bulb=document.createElement("div");
+bulb.className="bulb";
+bulb.style.animationDelay=(Math.random()*2)+"s";
+fairy.appendChild(bulb);
+}
+document.body.appendChild(fairy);
+
+/* FLOWER FALL */
+for(let i=0;i<30;i++){
+let fall=document.createElement("div");
+fall.className="fall";
+fall.innerHTML=["🌸","🌺","🌷","🌹"][Math.floor(Math.random()*4)];
+fall.style.left=Math.random()*100+"vw";
+fall.style.animationDuration=(Math.random()*5+5)+"s";
+document.body.appendChild(fall);
+}
+
+document.getElementById("paper").innerHTML=
+"<h2 style='color:white;text-align:center;'>Makasih ya sayangkuu udah maapin aku 🥺💖<br>Nihh aku punya sesuatu buat kamu 🎁</h2>"+
+"<div class='gift' onclick='openGift()'>🎁</div>";
+}
+
+/* OPEN GIFT */
+function openGift(){
+document.getElementById("paper").innerHTML=
+"<div class='bigLove'>💖 I LOVE YOU 💖</div>"+
+"<h2 style='color:white;'>Kamu itu segalanya buat aku 🥰</h2>";
+}
+
+</script>
+
+</body>
+</html>
