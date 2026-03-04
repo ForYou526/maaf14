@@ -3,198 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Playlist 💖</title>
+<title>Our 100 Songs 💖</title>
 
 <style>
 body{
     margin:0;
-    font-family: 'Poppins', sans-serif;
-    height:100vh;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#ff9ecf,#ffc3e6);
     display:flex;
     justify-content:center;
     align-items:center;
-    background: linear-gradient(135deg,#ff9ecf,#ffc3e6,#ffd6ec);
-    overflow:hidden;
-}
-
-/* floating hearts */
-.heart{
-    position:absolute;
+    height:100vh;
     color:white;
-    animation: float 6s linear infinite;
-    opacity:0.6;
-}
-
-@keyframes float{
-    0%{transform: translateY(100vh) scale(0.5);}
-    100%{transform: translateY(-10vh) scale(1);}
 }
 
 .player{
-    width:350px;
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(15px);
-    border-radius:25px;
-    padding:30px;
-    text-align:center;
-    box-shadow:0 10px 40px rgba(0,0,0,0.2);
-}
-
-.cover{
-    width:220px;
-    height:220px;
+    width:360px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
     border-radius:20px;
-    object-fit:cover;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
-    margin-bottom:20px;
-}
-
-h2{
-    margin:10px 0 5px;
-    color:white;
-}
-
-p{
-    margin:0;
-    color:white;
-    opacity:0.8;
-}
-
-.controls{
-    margin-top:20px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
 button{
-    background:white;
+    padding:10px 15px;
+    margin:5px;
     border:none;
-    padding:12px 18px;
-    margin:0 8px;
-    border-radius:50%;
-    font-size:18px;
+    border-radius:10px;
     cursor:pointer;
-    transition:0.3s;
+    font-weight:bold;
 }
 
-button:hover{
-    transform:scale(1.2);
+#playBtn{
+    background:#ff4fa3;
+    color:white;
 }
 
 .progress{
     width:100%;
     height:6px;
-    background:rgba(255,255,255,0.4);
+    background:white;
+    margin-top:15px;
     border-radius:10px;
-    margin-top:20px;
     cursor:pointer;
 }
 
 .progress-bar{
     height:100%;
     width:0%;
-    background:white;
+    background:#ff4fa3;
     border-radius:10px;
+}
+
+.song-list{
+    max-height:120px;
+    overflow-y:auto;
+    margin-top:15px;
+    background:rgba(255,255,255,0.2);
+    border-radius:10px;
+    padding:5px;
+}
+
+.song-item{
+    padding:5px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.song-item:hover{
+    background:rgba(255,255,255,0.3);
 }
 </style>
 </head>
 <body>
 
 <div class="player">
-    <img src="cover.jpg" class="cover" id="cover">
+    <h2 id="title">Loading...</h2>
 
-    <h2 id="title">Judul Lagu</h2>
-    <p id="artist">Nama Penyanyi</p>
-
-    <div class="controls">
-        <button onclick="prevSong()">⏮</button>
-        <button onclick="togglePlay()" id="playBtn">▶</button>
-        <button onclick="nextSong()">⏭</button>
-    </div>
+    <button onclick="prevSong()">Prev</button>
+    <button onclick="togglePlay()" id="playBtn">Play</button>
+    <button onclick="nextSong()">Next</button>
 
     <div class="progress" onclick="setProgress(event)">
         <div class="progress-bar" id="progressBar"></div>
     </div>
+
+    <div class="song-list" id="songList"></div>
 </div>
 
 <audio id="audio"></audio>
 
 <script>
-const songs = [
-{
-    title:"Perfect",
-    artist:"Ed Sheeran",
-    src:"music1.mp3",
-    cover:"cover.jpg"
-},
-{
-    title:"Until I Found You",
-    artist:"Stephen Sanchez",
-    src:"music2.mp3",
-    cover:"cover2.jpg"
-}
-];
+const songs = [];
 
-let currentSong = 0;
-const audio = document.getElementById("audio");
-const title = document.getElementById("title");
-const artist = document.getElementById("artist");
-const cover = document.getElementById("cover");
-const playBtn = document.getElementById("playBtn");
-const progressBar = document.getElementById("progressBar");
+// AUTO GENERATE 100 LAGU
+for(let i=1;i<=100;i++){
+    songs.push({
+        title:"Song "+i,
+        src:"music/"+i+".mp3"
+    });
+}
+
+let currentSong=0;
+const audio=document.getElementById("audio");
+const title=document.getElementById("title");
+const playBtn=document.getElementById("playBtn");
+const progressBar=document.getElementById("progressBar");
+const songList=document.getElementById("songList");
 
 function loadSong(index){
-    title.textContent = songs[index].title;
-    artist.textContent = songs[index].artist;
-    audio.src = songs[index].src;
-    cover.src = songs[index].cover;
+    title.textContent=songs[index].title;
+    audio.src=songs[index].src;
 }
 
 function togglePlay(){
     if(audio.paused){
         audio.play();
-        playBtn.textContent="⏸";
+        playBtn.textContent="Pause";
     }else{
         audio.pause();
-        playBtn.textContent="▶";
+        playBtn.textContent="Play";
     }
 }
 
 function nextSong(){
-    currentSong = (currentSong+1)%songs.length;
+    currentSong=(currentSong+1)%songs.length;
     loadSong(currentSong);
     audio.play();
-    playBtn.textContent="⏸";
+    playBtn.textContent="Pause";
 }
 
 function prevSong(){
-    currentSong = (currentSong-1+songs.length)%songs.length;
+    currentSong=(currentSong-1+songs.length)%songs.length;
     loadSong(currentSong);
     audio.play();
-    playBtn.textContent="⏸";
+    playBtn.textContent="Pause";
 }
 
 audio.addEventListener("timeupdate",()=>{
-    const progress = (audio.currentTime/audio.duration)*100;
-    progressBar.style.width = progress+"%";
+    if(audio.duration){
+        const progress=(audio.currentTime/audio.duration)*100;
+        progressBar.style.width=progress+"%";
+    }
 });
 
 function setProgress(e){
-    const width = e.currentTarget.clientWidth;
-    const clickX = e.offsetX;
-    audio.currentTime = (clickX/width)*audio.duration;
+    const width=e.currentTarget.clientWidth;
+    const clickX=e.offsetX;
+    if(audio.duration){
+        audio.currentTime=(clickX/width)*audio.duration;
+    }
 }
+
+// BUAT LIST 100 LAGU
+songs.forEach((song,index)=>{
+    const div=document.createElement("div");
+    div.textContent=song.title;
+    div.classList.add("song-item");
+    div.onclick=()=>{
+        currentSong=index;
+        loadSong(index);
+        audio.play();
+        playBtn.textContent="Pause";
+    };
+    songList.appendChild(div);
+});
 
 loadSong(currentSong);
 
-/* floating hearts */
-setInterval(()=>{
-    const heart=document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML="💖";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(20+Math.random()*20)+"px";
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),6000);
-},500);
+// MEDIA SESSION (BISA PLAY DI LOCK SCREEN)
+if('mediaSession' in navigator){
+    navigator.mediaSession.setActionHandler('play',()=>audio.play());
+    navigator.mediaSession.setActionHandler('pause',()=>audio.pause());
+    navigator.mediaSession.setActionHandler('previoustrack',()=>prevSong());
+    navigator.mediaSession.setActionHandler('nexttrack',()=>nextSong());
+}
 </script>
 
 </body>
