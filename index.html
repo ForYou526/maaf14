@@ -6,177 +6,180 @@
 <title>buatt cayangkuu 💖</title>
 
 <style>
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    text-align:center;
-    color:white;
-    overflow:hidden;
 
-    /* BACKGROUND GIF */
-    background:url("https://media.tenor.com/84ht.gif") center/cover no-repeat fixed;
+/* ===== BACKGROUND GIF (GANTI LINK DI SINI) ===== */
+:root{
+--bg-gif: url("https://tenor.com/84ht.gif");
 }
 
-/* OVERLAY biar teks tetap keliatan */
-body::before{
-content:"";
+body{
+margin:0;
+font-family:Arial, sans-serif;
+text-align:center;
+color:white;
+overflow:hidden;
+
+background-image: var(--bg-gif);
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+background-attachment:fixed;
+}
+
+/* MUSIC BUTTON */
+.music-btn{
+position:fixed;
+top:15px;
+right:15px;
+background:#ff1493;
+border:none;
+border-radius:50%;
+width:45px;
+height:45px;
+color:white;
+font-size:18px;
+cursor:pointer;
+box-shadow:0 0 15px #ff1493;
+z-index:10;
+}
+
+/* STARS */
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.2; transform:scale(1);}
+to{opacity:1; transform:scale(1.4);}
+}
+
+/* SHOOTING STAR */
+.shooting-star{
+position:absolute;
+width:3px;
+height:3px;
+background:white;
+box-shadow:0 0 15px white;
+animation:shoot 1.5s linear forwards;
+}
+
+@keyframes shoot{
+from{transform:translate(0,0);opacity:1;}
+to{transform:translate(600px,350px);opacity:0;}
+}
+
+.envelope{
+width:250px;
+height:150px;
+background:#ff1493;
+margin:100px auto;
+border-radius:15px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+font-size:18px;
+box-shadow:0 0 25px #ff1493;
+}
+
+.loading{
+margin-top:120px;
+font-size:22px;
+animation:fade 2s infinite alternate;
+}
+
+@keyframes fade{
+from{opacity:0.5;}
+to{opacity:1;}
+}
+
+.apology{
+display:none;
+margin-top:80px;
+padding:20px;
+max-width:500px;
+margin-left:auto;
+margin-right:auto;
+line-height:1.6;
+}
+
+.question{
+display:none;
+margin-top:80px;
+}
+
+#bigText{
+font-size:30px;
+transition:0.3s;
+margin-bottom:20px;
+}
+
+.btn{
+padding:12px 25px;
+border:none;
+border-radius:25px;
+cursor:pointer;
+margin:10px;
+font-size:18px;
+}
+
+.yes{
+background:#ff1493;
+color:white;
+}
+
+.no{
+background:#555;
+color:white;
+}
+
+.cinematic{
+display:none;
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.45);
-z-index:-1;
-}
-
-/* MUSIC BUTTON */
-.music-btn{
-    position:fixed;
-    top:15px;
-    right:15px;
-    background:#ff1493;
-    border:none;
-    border-radius:50%;
-    width:45px;
-    height:45px;
-    color:white;
-    font-size:18px;
-    cursor:pointer;
-    box-shadow:0 0 15px #ff1493;
-    z-index:10;
-}
-
-/* STARS */
-.star{
-    position:absolute;
-    width:2px;
-    height:2px;
-    background:white;
-    border-radius:50%;
-    animation:twinkle 2s infinite alternate;
-}
-@keyframes twinkle{
-    from{opacity:0.2; transform:scale(1);}
-    to{opacity:1; transform:scale(1.4);}
-}
-
-/* SHOOTING STAR */
-.shooting-star{
-    position:absolute;
-    width:3px;
-    height:3px;
-    background:white;
-    box-shadow:0 0 15px white;
-    animation:shoot 1.5s linear forwards;
-}
-@keyframes shoot{
-    from{transform:translate(0,0);opacity:1;}
-    to{transform:translate(600px,350px);opacity:0;}
-}
-
-.envelope{
-    width:250px;
-    height:150px;
-    background:#ff1493;
-    margin:100px auto;
-    border-radius:15px;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    font-size:18px;
-    box-shadow:0 0 25px #ff1493;
-}
-
-.loading{
-    margin-top:120px;
-    font-size:22px;
-    animation:fade 2s infinite alternate;
-}
-@keyframes fade{
-    from{opacity:0.5;}
-    to{opacity:1;}
-}
-
-.apology{
-    display:none;
-    margin-top:80px;
-    padding:20px;
-    max-width:500px;
-    margin-left:auto;
-    margin-right:auto;
-    line-height:1.6;
-}
-
-.question{
-    display:none;
-    margin-top:80px;
-}
-
-#bigText{
-    font-size:30px;
-    transition:0.3s;
-    margin-bottom:20px;
-}
-
-.btn{
-    padding:12px 25px;
-    border:none;
-    border-radius:25px;
-    cursor:pointer;
-    margin:10px;
-    font-size:18px;
-}
-
-.yes{
-    background:#ff1493;
-    color:white;
-}
-
-.no{
-    background:#555;
-    color:white;
-}
-
-.cinematic{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:black;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    text-align:center;
-    padding:20px;
+background:black;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
 }
 
 .sky-photo{
-    margin-top:20px;
-    width:200px;
-    border-radius:15px;
-    opacity:0;
-    animation: fadePhoto 3s forwards;
-    animation-delay:4s;
-    box-shadow:0 0 30px #ff1493;
+margin-top:20px;
+width:200px;
+border-radius:15px;
+opacity:0;
+animation: fadePhoto 3s forwards;
+animation-delay:4s;
+box-shadow:0 0 30px #ff1493;
 }
+
 @keyframes fadePhoto{
-    to{opacity:1;}
+to{opacity:1;}
 }
 
 .happy{
-    font-size:100px;
-    animation:bounce 1s infinite;
-    margin-top:20px;
+font-size:100px;
+animation:bounce 1s infinite;
+margin-top:20px;
 }
+
 @keyframes bounce{
-    0%{transform:translateY(0);}
-    50%{transform:translateY(-25px);}
-    100%{transform:translateY(0);}
+0%{transform:translateY(0);}
+50%{transform:translateY(-25px);}
+100%{transform:translateY(0);}
 }
+
 </style>
 </head>
 
@@ -225,6 +228,7 @@ akuu tauu kamuu pasti maapinn hehehe 💞<br>
 const music=document.getElementById("bgm");
 let isPlaying=false;
 
+/* Fade in music */
 function fadeInMusic(){
 music.volume=0;
 music.play();
@@ -240,6 +244,7 @@ clearInterval(fade);
 isPlaying=true;
 }
 
+/* Toggle music */
 function toggleMusic(){
 if(isPlaying){
 music.pause();
@@ -252,7 +257,7 @@ document.querySelector(".music-btn").innerText="🔊";
 }
 }
 
-/* STARS */
+/* Stars */
 for(let i=0;i<180;i++){
 const star=document.createElement("div");
 star.className="star";
@@ -262,7 +267,7 @@ star.style.animationDuration=(Math.random()*2+1)+"s";
 document.body.appendChild(star);
 }
 
-/* SHOOTING STAR */
+/* Shooting stars */
 setInterval(()=>{
 const shoot=document.createElement("div");
 shoot.className="shooting-star";
@@ -314,7 +319,14 @@ noSize-=2;
 document.getElementById("bigText").style.fontSize=size+"px";
 document.getElementById("yesBtn").style.fontSize=size/2+"px";
 document.getElementById("noBtn").style.fontSize=noSize+"px";
-if(size>=110){showEnding();}
+
+if(noSize<=0){
+document.getElementById("noBtn").style.display="none";
+}
+
+if(size>=110){
+showEnding();
+}
 }
 
 function moveNo(){
