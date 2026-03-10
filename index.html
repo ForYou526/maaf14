@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Our Love</title>
+<title>Happy Valentine ❤️</title>
 
 <style>
 
 body{
 margin:0;
 font-family:Arial;
-background:radial-gradient(circle at center,#14001f,#000);
+background:radial-gradient(circle,#1a0025,#000);
 color:white;
 overflow:hidden;
 }
@@ -27,9 +27,7 @@ flex-direction:column;
 text-align:center;
 }
 
-.active{
-display:flex;
-}
+.active{display:flex}
 
 /* LOVE MODE */
 
@@ -40,7 +38,6 @@ background:#555;
 border-radius:40px;
 position:relative;
 cursor:pointer;
-transition:.4s;
 }
 
 .circle{
@@ -63,7 +60,7 @@ box-shadow:0 0 20px #ff2e75;
 left:50px;
 }
 
-/* QUIZ */
+/* BUTTON */
 
 button{
 padding:12px 25px;
@@ -77,83 +74,75 @@ cursor:pointer;
 box-shadow:0 0 15px #ff2e75;
 }
 
+/* TIC TAC TOE */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,80px);
+gap:10px;
+}
+
+.cell{
+width:80px;
+height:80px;
+background:#222;
+font-size:40px;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+}
+
+/* METER */
+
+.meter{
+width:200px;
+height:200px;
+border-radius:50%;
+border:10px solid rgba(255,255,255,.1);
+position:relative;
+}
+
+.meterFill{
+position:absolute;
+width:200px;
+height:200px;
+border-radius:50%;
+border:10px solid #ff2e75;
+clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
+transform:rotate(0deg);
+}
+
+.percent{
+font-size:40px;
+margin-top:20px;
+}
+
 /* TREE */
 
-#treeContainer{
-position:relative;
-width:300px;
-height:400px;
+#tree{
+font-size:120px;
+opacity:0;
+transform:scale(0);
+transition:1.5s;
 }
 
-.heartBase{
-font-size:60px;
-}
-
-.tree{
-position:absolute;
-bottom:0;
-left:50%;
-transform:translateX(-50%) scale(0);
-width:20px;
-height:200px;
-background:#4b2a1f;
-border-radius:10px;
-transition:2s;
-}
-
-.tree.show{
-transform:translateX(-50%) scale(1);
-}
-
-.branch{
-position:absolute;
-width:120px;
-height:6px;
-background:#4b2a1f;
-top:60px;
-left:-50px;
-transform:rotate(30deg);
-}
-
-.branch2{
-position:absolute;
-width:120px;
-height:6px;
-background:#4b2a1f;
-top:100px;
-left:-50px;
-transform:rotate(-30deg);
-}
-
-/* HEART LEAVES */
-
-.leaf{
-position:absolute;
-color:#ff2e75;
-font-size:18px;
-animation:fall 6s linear infinite;
-}
-
-@keyframes fall{
-
-0%{transform:translateY(0);opacity:1;}
-
-100%{transform:translateY(400px);opacity:0;}
-
+#tree.show{
+opacity:1;
+transform:scale(1);
 }
 
 /* TIMER */
 
 .timer{
 font-size:22px;
-margin-top:15px;
+margin-top:10px;
 }
 
-/* TYPE MESSAGE */
+/* TYPEWRITER */
 
 #message{
 width:400px;
-font-size:18px;
 line-height:1.6;
 }
 
@@ -180,7 +169,6 @@ height:140px;
 border-radius:15px;
 overflow:hidden;
 box-shadow:0 0 20px #ff2e75;
-transition:.3s;
 }
 
 .photo img{
@@ -189,14 +177,14 @@ height:100%;
 object-fit:cover;
 }
 
-.photo:hover{
-transform:scale(1.2);
-}
-
 </style>
 </head>
 
 <body>
+
+<audio autoplay loop>
+<source src="pretty.mp3">
+</audio>
 
 <!-- LOVE MODE -->
 
@@ -208,60 +196,61 @@ transform:scale(1.2);
 <div class="circle"></div>
 </div>
 
-<p>Turn on love mode ❤️</p>
-
 </div>
 
-<!-- QUIZ -->
+<!-- TIC TAC TOE -->
 
 <div class="page" id="p2">
 
-<h2>Pertanyaan Buat Kamu 💖</h2>
+<h2>Main dulu 😆</h2>
 
-<div id="quizBox"></div>
+<div class="grid" id="grid"></div>
+
+</div>
+
+<!-- LOVE METER -->
+
+<div class="page" id="p3">
+
+<h2>Cinta Kita ❤️</h2>
+
+<div class="meter">
+<div class="meterFill" id="meterFill"></div>
+</div>
+
+<div class="percent" id="percent">0%</div>
 
 </div>
 
 <!-- TREE -->
 
-<div class="page" id="p3">
+<div class="page" id="p4">
 
-<h2>Pohon Cinta 🌸</h2>
+<h2>Pohon Cinta</h2>
 
-<div id="treeContainer">
-
-<div class="heartBase">❤️</div>
-
-<div class="tree" id="tree">
-
-<div class="branch"></div>
-<div class="branch2"></div>
-
-</div>
-
-</div>
+<div id="tree">🌳</div>
 
 <div class="timer" id="timer"></div>
 
-<button onclick="nextPage(4)">Lanjut</button>
+<button onclick="nextPage(5)">Lanjut</button>
 
 </div>
 
 <!-- MESSAGE -->
 
-<div class="page" id="p4">
+<div class="page" id="p5">
 
-<h2>Untuk Kamu 💌</h2>
+<h2>Untuk Kamu</h2>
 
 <div id="message"></div>
 
-<button onclick="nextPage(5)">Lihat Kenangan</button>
+<button onclick="nextPage(6)">Kenangan Kita</button>
 
 </div>
 
 <!-- DOME -->
 
-<div class="page" id="p5">
+<div class="page" id="p6">
 
 <div class="scene">
 <div class="dome" id="dome"></div>
@@ -291,82 +280,69 @@ setTimeout(()=>{
 
 nextPage(2)
 
-startQuiz()
+startGame()
 
-},700)
+},800)
 
 }
 
-/* QUIZ */
+/* TIC TAC TOE */
 
-const questions=[
+function startGame(){
 
-"Siapa yang paling ganteng?",
-"Siapa yang paling sayang kamu?",
-"Kita bakal lama gak?",
-"Kalau aku kangen kamu gimana?",
-"Aku bikin kamu bahagia gak?",
-"Kita cocok gak?",
-"Kamu cinta aku?",
-"Kita bakal sampai tua kan?"
+const grid=document.getElementById("grid")
 
-]
+for(let i=0;i<9;i++){
 
-let q=0
+let cell=document.createElement("div")
 
-function startQuiz(){
-showQuestion()
-}
+cell.className="cell"
 
-function showQuestion(){
+cell.onclick=()=>{
 
-if(q>=questions.length){
+cell.innerHTML="X"
+
+setTimeout(()=>{
 
 nextPage(3)
 
-setTimeout(()=>{
-document.getElementById("tree").classList.add("show")
-spawnLeaves()
+startMeter()
+
 },500)
 
-return
 }
 
-document.getElementById("quizBox").innerHTML=
-
-"<p>"+questions[q]+"</p>"+
-"<button onclick='nextQ()'>Iya</button>"+
-"<button onclick='nextQ()'>Banget</button>"
+grid.appendChild(cell)
 
 }
 
-function nextQ(){
+}
 
-q++
+/* LOVE METER */
 
-showQuestion()
+function startMeter(){
+
+let p=0
+
+let interval=setInterval(()=>{
+
+p++
+
+document.getElementById("percent").innerText=p+"%"
+
+document.getElementById("meterFill").style.transform="rotate("+(p*1.8)+"deg)"
+
+if(p>=100){
+
+clearInterval(interval)
+
+nextPage(4)
+
+document.getElementById("tree").classList.add("show")
 
 }
 
-/* LEAVES */
-
-function spawnLeaves(){
-
-setInterval(()=>{
-
-const leaf=document.createElement("div")
-
-leaf.className="leaf"
-
-leaf.innerHTML="❤️"
-
-leaf.style.left=Math.random()*300+"px"
-
-document.getElementById("treeContainer").appendChild(leaf)
-
-setTimeout(()=>leaf.remove(),6000)
-
-},600)
+},40)
 
 }
 
@@ -393,7 +369,7 @@ d+" hari "+h+" jam "+m+" menit "+s+" detik"
 
 /* TYPEWRITER */
 
-const text="Aku bersyukur banget bisa kenal kamu. Kamu adalah orang yang paling berarti buat aku. Semoga kita bisa terus bersama sampai tua nanti ❤️"
+const text="Aku bersyukur banget bisa kenal kamu. Kamu adalah orang paling berarti buat aku ❤️"
 
 let i=0
 
@@ -419,12 +395,12 @@ const dome=document.getElementById("dome")
 
 const photos=[
 
-"1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg",
-"9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg"
+"1.jpeg","2.jpeg","3.jpeg","4.jpeg","5.jpeg",
+"6.jpeg","7.jpeg","8.jpeg","9.jpeg","10.jpeg"
 
 ]
 
-const radius=600
+const radius=500
 
 photos.forEach((src,i)=>{
 
@@ -437,13 +413,9 @@ const photo=document.createElement("div")
 
 photo.className="photo"
 
-photo.style.transform=
-
-`translate3d(${x}px,${Math.random()*200-100}px,${z}px)`
+photo.style.transform=`translate3d(${x}px,0,${z}px)`
 
 photo.innerHTML=`<img src="${src}">`
-
-photo.onclick=()=>alert("Kenangan Kita ❤️")
 
 dome.appendChild(photo)
 
@@ -472,9 +444,7 @@ if(!isDown)return
 rotY+=(e.clientX-startX)*0.3
 rotX-=(e.clientY-startY)*0.2
 
-dome.style.transform=
-
-`rotateX(${rotX}deg) rotateY(${rotY}deg)`
+dome.style.transform=`rotateX(${rotX}deg) rotateY(${rotY}deg)`
 
 startX=e.clientX
 startY=e.clientY
