@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Untuk Kamu ❤️</title>
+<title>Our Love</title>
 
 <style>
 
 body{
 margin:0;
-font-family:'Poppins',sans-serif;
-background:linear-gradient(135deg,#2a0033,#000);
+font-family:Arial;
+background:radial-gradient(circle at center,#14001f,#000);
 color:white;
 overflow:hidden;
 }
@@ -34,31 +34,33 @@ display:flex;
 /* LOVE MODE */
 
 .switch{
-width:80px;
-height:40px;
-background:#333;
+width:90px;
+height:44px;
+background:#555;
 border-radius:40px;
 position:relative;
 cursor:pointer;
+transition:.4s;
 }
 
 .circle{
-width:34px;
-height:34px;
+width:36px;
+height:36px;
 background:white;
 border-radius:50%;
 position:absolute;
-top:3px;
-left:3px;
-transition:0.4s;
+top:4px;
+left:4px;
+transition:.4s;
 }
 
 .switch.active{
-background:#ff2d75;
+background:#ff2e75;
+box-shadow:0 0 20px #ff2e75;
 }
 
 .switch.active .circle{
-left:43px;
+left:50px;
 }
 
 /* QUIZ */
@@ -67,64 +69,92 @@ button{
 padding:12px 25px;
 border:none;
 border-radius:25px;
-background:#ff2d75;
+background:#ff2e75;
 color:white;
 font-size:18px;
-margin:8px;
+margin:10px;
 cursor:pointer;
-box-shadow:0 0 15px #ff2d75;
-}
-
-/* LOVE METER */
-
-.meter{
-width:220px;
-height:220px;
-border-radius:50%;
-border:12px solid rgba(255,255,255,0.1);
-position:relative;
-}
-
-.meterFill{
-position:absolute;
-width:220px;
-height:220px;
-border-radius:50%;
-border:12px solid #ff2d75;
-clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
-transform:rotate(0deg);
-}
-
-.percent{
-font-size:40px;
-margin-top:20px;
+box-shadow:0 0 15px #ff2e75;
 }
 
 /* TREE */
 
-#tree{
-font-size:140px;
-opacity:0;
-transform:scale(0);
-transition:1.5s;
+#treeContainer{
+position:relative;
+width:300px;
+height:400px;
 }
 
-#tree.show{
-opacity:1;
-transform:scale(1);
+.heartBase{
+font-size:60px;
 }
+
+.tree{
+position:absolute;
+bottom:0;
+left:50%;
+transform:translateX(-50%) scale(0);
+width:20px;
+height:200px;
+background:#4b2a1f;
+border-radius:10px;
+transition:2s;
+}
+
+.tree.show{
+transform:translateX(-50%) scale(1);
+}
+
+.branch{
+position:absolute;
+width:120px;
+height:6px;
+background:#4b2a1f;
+top:60px;
+left:-50px;
+transform:rotate(30deg);
+}
+
+.branch2{
+position:absolute;
+width:120px;
+height:6px;
+background:#4b2a1f;
+top:100px;
+left:-50px;
+transform:rotate(-30deg);
+}
+
+/* HEART LEAVES */
+
+.leaf{
+position:absolute;
+color:#ff2e75;
+font-size:18px;
+animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+
+0%{transform:translateY(0);opacity:1;}
+
+100%{transform:translateY(400px);opacity:0;}
+
+}
+
+/* TIMER */
 
 .timer{
 font-size:22px;
-margin-top:10px;
+margin-top:15px;
 }
 
-/* TYPEWRITER */
+/* TYPE MESSAGE */
 
 #message{
 width:400px;
-line-height:1.6;
 font-size:18px;
+line-height:1.6;
 }
 
 /* DOME */
@@ -145,12 +175,12 @@ cursor:grab;
 
 .photo{
 position:absolute;
-width:160px;
-height:160px;
+width:140px;
+height:140px;
 border-radius:15px;
 overflow:hidden;
-box-shadow:0 0 20px #ff2d75;
-transition:0.3s;
+box-shadow:0 0 20px #ff2e75;
+transition:.3s;
 }
 
 .photo img{
@@ -168,7 +198,7 @@ transform:scale(1.2);
 
 <body>
 
-<!-- PAGE 1 LOVE MODE -->
+<!-- LOVE MODE -->
 
 <div class="page active" id="p1">
 
@@ -182,61 +212,56 @@ transform:scale(1.2);
 
 </div>
 
-<!-- PAGE 2 QUIZ -->
+<!-- QUIZ -->
 
 <div class="page" id="p2">
 
-<h2>Pertanyaan Cinta 💖</h2>
+<h2>Pertanyaan Buat Kamu 💖</h2>
 
 <div id="quizBox"></div>
 
 </div>
 
-<!-- PAGE 3 LOVE METER -->
+<!-- TREE -->
 
 <div class="page" id="p3">
 
-<h2>Cinta Kita Hehe ❤️</h2>
-
-<div class="meter">
-<div class="meterFill" id="meterFill"></div>
-</div>
-
-<div class="percent" id="percent">0%</div>
-
-</div>
-
-<!-- PAGE 4 TREE -->
-
-<div class="page" id="p4">
-
 <h2>Pohon Cinta 🌸</h2>
 
-<div id="tree">🌳</div>
+<div id="treeContainer">
+
+<div class="heartBase">❤️</div>
+
+<div class="tree" id="tree">
+
+<div class="branch"></div>
+<div class="branch2"></div>
+
+</div>
+
+</div>
 
 <div class="timer" id="timer"></div>
 
-<p>Kita sudah bersama sejak 25 Oktober 2024 ❤️</p>
-
-<button onclick="nextPage(5)">Lanjut</button>
+<button onclick="nextPage(4)">Lanjut</button>
 
 </div>
 
-<!-- PAGE 5 TYPEWRITER -->
+<!-- MESSAGE -->
 
-<div class="page" id="p5">
+<div class="page" id="p4">
 
 <h2>Untuk Kamu 💌</h2>
 
 <div id="message"></div>
 
-<button onclick="nextPage(6)">Lihat Kenangan</button>
+<button onclick="nextPage(5)">Lihat Kenangan</button>
 
 </div>
 
-<!-- PAGE 6 DOME -->
+<!-- DOME -->
 
-<div class="page" id="p6">
+<div class="page" id="p5">
 
 <div class="scene">
 <div class="dome" id="dome"></div>
@@ -246,13 +271,11 @@ transform:scale(1.2);
 
 <script>
 
-/* PAGE CONTROL */
+/* PAGE */
 
 function nextPage(n){
 
-document.querySelectorAll(".page").forEach(p=>{
-p.classList.remove("active")
-})
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"))
 
 document.getElementById("p"+n).classList.add("active")
 
@@ -270,7 +293,7 @@ nextPage(2)
 
 startQuiz()
 
-},800)
+},700)
 
 }
 
@@ -282,7 +305,11 @@ const questions=[
 "Siapa yang paling sayang kamu?",
 "Kita bakal lama gak?",
 "Kalau aku kangen kamu gimana?",
-"Kalau kita nikah nanti mau punya berapa anak?"
+"Aku bikin kamu bahagia gak?",
+"Kita cocok gak?",
+"Kamu cinta aku?",
+"Kita bakal sampai tua kan?"
+
 ]
 
 let q=0
@@ -294,53 +321,52 @@ showQuestion()
 function showQuestion(){
 
 if(q>=questions.length){
+
 nextPage(3)
-startMeter()
+
+setTimeout(()=>{
+document.getElementById("tree").classList.add("show")
+spawnLeaves()
+},500)
+
 return
 }
 
 document.getElementById("quizBox").innerHTML=
 
 "<p>"+questions[q]+"</p>"+
-"<button onclick='nextQ()'>Kamu</button>"+
-"<button onclick='nextQ()'>Tetap Kamu</button>"
+"<button onclick='nextQ()'>Iya</button>"+
+"<button onclick='nextQ()'>Banget</button>"
 
 }
 
 function nextQ(){
+
 q++
+
 showQuestion()
-}
-
-/* LOVE METER */
-
-function startMeter(){
-
-let p=0
-
-let interval=setInterval(()=>{
-
-p++
-
-document.getElementById("percent").innerText=p+"%"
-
-document.getElementById("meterFill").style.transform="rotate("+(p*1.8)+"deg)"
-
-if(p>=100){
-
-clearInterval(interval)
-
-setTimeout(()=>{
-
-nextPage(4)
-
-document.getElementById("tree").classList.add("show")
-
-},800)
 
 }
 
-},30)
+/* LEAVES */
+
+function spawnLeaves(){
+
+setInterval(()=>{
+
+const leaf=document.createElement("div")
+
+leaf.className="leaf"
+
+leaf.innerHTML="❤️"
+
+leaf.style.left=Math.random()*300+"px"
+
+document.getElementById("treeContainer").appendChild(leaf)
+
+setTimeout(()=>leaf.remove(),6000)
+
+},600)
 
 }
 
@@ -367,12 +393,7 @@ d+" hari "+h+" jam "+m+" menit "+s+" detik"
 
 /* TYPEWRITER */
 
-const text=
-
-"Aku bersyukur banget bisa kenal kamu. "+
-"Dari semua orang di dunia ini, "+
-"kamu adalah orang yang paling berarti buat aku. "+
-"Semoga kita bisa terus bersama sampai tua nanti. ❤️"
+const text="Aku bersyukur banget bisa kenal kamu. Kamu adalah orang yang paling berarti buat aku. Semoga kita bisa terus bersama sampai tua nanti ❤️"
 
 let i=0
 
@@ -392,26 +413,18 @@ setTimeout(typeWriter,40)
 
 typeWriter()
 
-/* DOME GALLERY */
+/* DOME */
 
 const dome=document.getElementById("dome")
 
 const photos=[
 
-"1.jpg",
-"2.jpg",
-"3.jpg",
-"4.jpg",
-"5.jpg",
-"6.jpg",
-"7.jpg",
-"8.jpg",
-"9.jpg",
-"10.jpg"
+"1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg",
+"9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg"
 
 ]
 
-const radius=500
+const radius=600
 
 photos.forEach((src,i)=>{
 
@@ -421,6 +434,7 @@ const x=Math.cos(angle)*radius
 const z=Math.sin(angle)*radius
 
 const photo=document.createElement("div")
+
 photo.className="photo"
 
 photo.style.transform=
@@ -435,7 +449,7 @@ dome.appendChild(photo)
 
 })
 
-/* ROTATION */
+/* ROTATE */
 
 let isDown=false
 let startX
@@ -464,23 +478,6 @@ dome.style.transform=
 
 startX=e.clientX
 startY=e.clientY
-
-})
-
-document.addEventListener("touchmove",e=>{
-
-let x=e.touches[0].clientX
-let y=e.touches[0].clientY
-
-rotY+=(x-startX)*0.3
-rotX-=(y-startY)*0.2
-
-dome.style.transform=
-
-`rotateX(${rotX}deg) rotateY(${rotY}deg)`
-
-startX=x
-startY=y
 
 })
 
